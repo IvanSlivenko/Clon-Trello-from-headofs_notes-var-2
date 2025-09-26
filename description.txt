@@ -1,0 +1,41 @@
+----------------------------------------- Lesson 1
+https://youtu.be/UyLdbZmoqg4
+
+------------------------------------------------------------------- Схема в dbdiagram.io 16:15
+https://dbdiagram.io/d/Trello-clone-2-68d69ff4d2b621e42214ed0a
+
+
+yarn create next-app trello
+
+------------------------------------------------------------------- prisma 19 : 05
+
+yarn add prisma -D
+
+yarn prisma init
+
+
+------------------------------------------------------------------ supabase 19 : 31 supabase не дає данних про підключення до бази данних
+https://supabase.com/
+
+password dabase 4DkZ8TF7SZRYpyM8
+
+------------------------------------------------- postgresql
+створив базу данних на localhost: 5433 name postresTwo
+password : admin
+
+
+yarn prisma migrate dev
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------
+00 : 42 : 06
