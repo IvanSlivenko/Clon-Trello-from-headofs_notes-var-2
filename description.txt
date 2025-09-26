@@ -26,6 +26,8 @@ password : admin
 
 yarn prisma migrate dev
 
+yarn add zod
+
 
 
 
