@@ -104,7 +104,7 @@ exports.Prisma.ColumnsScalarFieldEnum = {
   title: 'title',
   boardId: 'boardId',
   order: 'order',
-  widtch: 'widtch',
+  width: 'width',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -169,7 +169,8 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
   "clientVersion": "6.16.2",
@@ -178,7 +179,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -187,13 +187,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Boards {\n  id        String    @id @default(uuid())\n  title     String\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  columns   Columns[]\n}\n\nmodel Columns {\n  id        String   @id @default(uuid())\n  title     String\n  boardId   String\n  board     Boards   @relation(fields: [boardId], references: [id], onDelete: Cascade)\n  order     Int\n  widtch    Int\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  cards     Cards[]\n}\n\nmodel Cards {\n  id          String   @id @default(uuid())\n  title       String\n  columnId    String\n  column      Columns  @relation(fields: [columnId], references: [id], onDelete: Cascade)\n  description String?\n  order       Int\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n}\n",
-  "inlineSchemaHash": "3e2349715d7dc12a002548d917bfa64fb957e0a7105ab98fbde2c6f3647f75b6",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Boards {\n  id        String    @id @default(uuid())\n  title     String\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  columns   Columns[]\n}\n\nmodel Columns {\n  id        String   @id @default(uuid())\n  title     String\n  boardId   String\n  board     Boards   @relation(fields: [boardId], references: [id], onDelete: Cascade)\n  order     Int\n  width     Int\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  cards     Cards[]\n}\n\nmodel Cards {\n  id          String   @id @default(uuid())\n  title       String\n  columnId    String\n  column      Columns  @relation(fields: [columnId], references: [id], onDelete: Cascade)\n  description String?\n  order       Int\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n}\n",
+  "inlineSchemaHash": "047b3b30095a9cddef94e3e0c524b5497b0e55ff94ba6e40ed06a493030e3bde",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Boards\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"columns\",\"kind\":\"object\",\"type\":\"Columns\",\"relationName\":\"BoardsToColumns\"}],\"dbName\":null},\"Columns\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"boardId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"board\",\"kind\":\"object\",\"type\":\"Boards\",\"relationName\":\"BoardsToColumns\"},{\"name\":\"order\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"widtch\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"cards\",\"kind\":\"object\",\"type\":\"Cards\",\"relationName\":\"CardsToColumns\"}],\"dbName\":null},\"Cards\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"columnId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"column\",\"kind\":\"object\",\"type\":\"Columns\",\"relationName\":\"CardsToColumns\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"order\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Boards\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"columns\",\"kind\":\"object\",\"type\":\"Columns\",\"relationName\":\"BoardsToColumns\"}],\"dbName\":null},\"Columns\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"boardId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"board\",\"kind\":\"object\",\"type\":\"Boards\",\"relationName\":\"BoardsToColumns\"},{\"name\":\"order\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"width\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"cards\",\"kind\":\"object\",\"type\":\"Cards\",\"relationName\":\"CardsToColumns\"}],\"dbName\":null},\"Cards\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"columnId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"column\",\"kind\":\"object\",\"type\":\"Columns\",\"relationName\":\"CardsToColumns\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"order\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

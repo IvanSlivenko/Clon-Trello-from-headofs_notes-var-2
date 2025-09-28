@@ -2174,12 +2174,12 @@ export namespace Prisma {
 
   export type ColumnsAvgAggregateOutputType = {
     order: number | null
-    widtch: number | null
+    width: number | null
   }
 
   export type ColumnsSumAggregateOutputType = {
     order: number | null
-    widtch: number | null
+    width: number | null
   }
 
   export type ColumnsMinAggregateOutputType = {
@@ -2187,7 +2187,7 @@ export namespace Prisma {
     title: string | null
     boardId: string | null
     order: number | null
-    widtch: number | null
+    width: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2197,7 +2197,7 @@ export namespace Prisma {
     title: string | null
     boardId: string | null
     order: number | null
-    widtch: number | null
+    width: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2207,7 +2207,7 @@ export namespace Prisma {
     title: number
     boardId: number
     order: number
-    widtch: number
+    width: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2216,12 +2216,12 @@ export namespace Prisma {
 
   export type ColumnsAvgAggregateInputType = {
     order?: true
-    widtch?: true
+    width?: true
   }
 
   export type ColumnsSumAggregateInputType = {
     order?: true
-    widtch?: true
+    width?: true
   }
 
   export type ColumnsMinAggregateInputType = {
@@ -2229,7 +2229,7 @@ export namespace Prisma {
     title?: true
     boardId?: true
     order?: true
-    widtch?: true
+    width?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2239,7 +2239,7 @@ export namespace Prisma {
     title?: true
     boardId?: true
     order?: true
-    widtch?: true
+    width?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2249,7 +2249,7 @@ export namespace Prisma {
     title?: true
     boardId?: true
     order?: true
-    widtch?: true
+    width?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2346,7 +2346,7 @@ export namespace Prisma {
     title: string
     boardId: string
     order: number
-    widtch: number
+    width: number
     createdAt: Date
     updatedAt: Date
     _count: ColumnsCountAggregateOutputType | null
@@ -2375,7 +2375,7 @@ export namespace Prisma {
     title?: boolean
     boardId?: boolean
     order?: boolean
-    widtch?: boolean
+    width?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     board?: boolean | BoardsDefaultArgs<ExtArgs>
@@ -2388,7 +2388,7 @@ export namespace Prisma {
     title?: boolean
     boardId?: boolean
     order?: boolean
-    widtch?: boolean
+    width?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     board?: boolean | BoardsDefaultArgs<ExtArgs>
@@ -2399,7 +2399,7 @@ export namespace Prisma {
     title?: boolean
     boardId?: boolean
     order?: boolean
-    widtch?: boolean
+    width?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     board?: boolean | BoardsDefaultArgs<ExtArgs>
@@ -2410,12 +2410,12 @@ export namespace Prisma {
     title?: boolean
     boardId?: boolean
     order?: boolean
-    widtch?: boolean
+    width?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ColumnsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "boardId" | "order" | "widtch" | "createdAt" | "updatedAt", ExtArgs["result"]["columns"]>
+  export type ColumnsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "boardId" | "order" | "width" | "createdAt" | "updatedAt", ExtArgs["result"]["columns"]>
   export type ColumnsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     board?: boolean | BoardsDefaultArgs<ExtArgs>
     cards?: boolean | Columns$cardsArgs<ExtArgs>
@@ -2439,7 +2439,7 @@ export namespace Prisma {
       title: string
       boardId: string
       order: number
-      widtch: number
+      width: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["columns"]>
@@ -2871,7 +2871,7 @@ export namespace Prisma {
     readonly title: FieldRef<"Columns", 'String'>
     readonly boardId: FieldRef<"Columns", 'String'>
     readonly order: FieldRef<"Columns", 'Int'>
-    readonly widtch: FieldRef<"Columns", 'Int'>
+    readonly width: FieldRef<"Columns", 'Int'>
     readonly createdAt: FieldRef<"Columns", 'DateTime'>
     readonly updatedAt: FieldRef<"Columns", 'DateTime'>
   }
@@ -4459,7 +4459,7 @@ export namespace Prisma {
     title: 'title',
     boardId: 'boardId',
     order: 'order',
-    widtch: 'widtch',
+    width: 'width',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4626,7 +4626,7 @@ export namespace Prisma {
     title?: StringFilter<"Columns"> | string
     boardId?: StringFilter<"Columns"> | string
     order?: IntFilter<"Columns"> | number
-    widtch?: IntFilter<"Columns"> | number
+    width?: IntFilter<"Columns"> | number
     createdAt?: DateTimeFilter<"Columns"> | Date | string
     updatedAt?: DateTimeFilter<"Columns"> | Date | string
     board?: XOR<BoardsScalarRelationFilter, BoardsWhereInput>
@@ -4638,7 +4638,7 @@ export namespace Prisma {
     title?: SortOrder
     boardId?: SortOrder
     order?: SortOrder
-    widtch?: SortOrder
+    width?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     board?: BoardsOrderByWithRelationInput
@@ -4653,7 +4653,7 @@ export namespace Prisma {
     title?: StringFilter<"Columns"> | string
     boardId?: StringFilter<"Columns"> | string
     order?: IntFilter<"Columns"> | number
-    widtch?: IntFilter<"Columns"> | number
+    width?: IntFilter<"Columns"> | number
     createdAt?: DateTimeFilter<"Columns"> | Date | string
     updatedAt?: DateTimeFilter<"Columns"> | Date | string
     board?: XOR<BoardsScalarRelationFilter, BoardsWhereInput>
@@ -4665,7 +4665,7 @@ export namespace Prisma {
     title?: SortOrder
     boardId?: SortOrder
     order?: SortOrder
-    widtch?: SortOrder
+    width?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ColumnsCountOrderByAggregateInput
@@ -4683,7 +4683,7 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Columns"> | string
     boardId?: StringWithAggregatesFilter<"Columns"> | string
     order?: IntWithAggregatesFilter<"Columns"> | number
-    widtch?: IntWithAggregatesFilter<"Columns"> | number
+    width?: IntWithAggregatesFilter<"Columns"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Columns"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Columns"> | Date | string
   }
@@ -4812,7 +4812,7 @@ export namespace Prisma {
     id?: string
     title: string
     order: number
-    widtch: number
+    width: number
     createdAt?: Date | string
     updatedAt?: Date | string
     board: BoardsCreateNestedOneWithoutColumnsInput
@@ -4824,7 +4824,7 @@ export namespace Prisma {
     title: string
     boardId: string
     order: number
-    widtch: number
+    width: number
     createdAt?: Date | string
     updatedAt?: Date | string
     cards?: CardsUncheckedCreateNestedManyWithoutColumnInput
@@ -4834,7 +4834,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    widtch?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     board?: BoardsUpdateOneRequiredWithoutColumnsNestedInput
@@ -4846,7 +4846,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     boardId?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    widtch?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cards?: CardsUncheckedUpdateManyWithoutColumnNestedInput
@@ -4857,7 +4857,7 @@ export namespace Prisma {
     title: string
     boardId: string
     order: number
-    widtch: number
+    width: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4866,7 +4866,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    widtch?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4876,7 +4876,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     boardId?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    widtch?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5070,14 +5070,14 @@ export namespace Prisma {
     title?: SortOrder
     boardId?: SortOrder
     order?: SortOrder
-    widtch?: SortOrder
+    width?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type ColumnsAvgOrderByAggregateInput = {
     order?: SortOrder
-    widtch?: SortOrder
+    width?: SortOrder
   }
 
   export type ColumnsMaxOrderByAggregateInput = {
@@ -5085,7 +5085,7 @@ export namespace Prisma {
     title?: SortOrder
     boardId?: SortOrder
     order?: SortOrder
-    widtch?: SortOrder
+    width?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5095,14 +5095,14 @@ export namespace Prisma {
     title?: SortOrder
     boardId?: SortOrder
     order?: SortOrder
-    widtch?: SortOrder
+    width?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type ColumnsSumOrderByAggregateInput = {
     order?: SortOrder
-    widtch?: SortOrder
+    width?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -5474,7 +5474,7 @@ export namespace Prisma {
     id?: string
     title: string
     order: number
-    widtch: number
+    width: number
     createdAt?: Date | string
     updatedAt?: Date | string
     cards?: CardsCreateNestedManyWithoutColumnInput
@@ -5484,7 +5484,7 @@ export namespace Prisma {
     id?: string
     title: string
     order: number
-    widtch: number
+    width: number
     createdAt?: Date | string
     updatedAt?: Date | string
     cards?: CardsUncheckedCreateNestedManyWithoutColumnInput
@@ -5524,7 +5524,7 @@ export namespace Prisma {
     title?: StringFilter<"Columns"> | string
     boardId?: StringFilter<"Columns"> | string
     order?: IntFilter<"Columns"> | number
-    widtch?: IntFilter<"Columns"> | number
+    width?: IntFilter<"Columns"> | number
     createdAt?: DateTimeFilter<"Columns"> | Date | string
     updatedAt?: DateTimeFilter<"Columns"> | Date | string
   }
@@ -5634,7 +5634,7 @@ export namespace Prisma {
     id?: string
     title: string
     order: number
-    widtch: number
+    width: number
     createdAt?: Date | string
     updatedAt?: Date | string
     board: BoardsCreateNestedOneWithoutColumnsInput
@@ -5645,7 +5645,7 @@ export namespace Prisma {
     title: string
     boardId: string
     order: number
-    widtch: number
+    width: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5670,7 +5670,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    widtch?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     board?: BoardsUpdateOneRequiredWithoutColumnsNestedInput
@@ -5681,7 +5681,7 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     boardId?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    widtch?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5690,7 +5690,7 @@ export namespace Prisma {
     id?: string
     title: string
     order: number
-    widtch: number
+    width: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5699,7 +5699,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    widtch?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cards?: CardsUpdateManyWithoutColumnNestedInput
@@ -5709,7 +5709,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    widtch?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cards?: CardsUncheckedUpdateManyWithoutColumnNestedInput
@@ -5719,7 +5719,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
-    widtch?: IntFieldUpdateOperationsInput | number
+    width?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

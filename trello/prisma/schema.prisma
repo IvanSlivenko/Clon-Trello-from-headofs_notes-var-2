@@ -22,7 +22,7 @@ model Columns {
   boardId   String
   board     Boards   @relation(fields: [boardId], references: [id], onDelete: Cascade)
   order     Int
-  widtch    Int
+  width     Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   cards     Cards[]

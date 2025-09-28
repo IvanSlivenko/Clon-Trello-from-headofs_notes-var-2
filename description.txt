@@ -24,7 +24,8 @@ password dabase 4DkZ8TF7SZRYpyM8
 password : admin
 
 
-yarn prisma migrate dev
+
+
 
 yarn add zod
 
@@ -40,4 +41,4 @@ yarn add zod
 
 
 --------------------------------------------
-01 : 03 : 33
+01 : 18 : 50

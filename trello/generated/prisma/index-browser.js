@@ -132,7 +132,7 @@ exports.Prisma.ColumnsScalarFieldEnum = {
   title: 'title',
   boardId: 'boardId',
   order: 'order',
-  widtch: 'widtch',
+  width: 'width',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

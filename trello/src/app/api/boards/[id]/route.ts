@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { updateBoardDTO } from "../dto";
 import { prisma } from "@/core/prisma";
-import { success } from "zod";
 
 interface BoardRoutedContext {
   params: {
@@ -12,7 +11,7 @@ interface BoardRoutedContext {
 // export async function PUT(req: Request, { params }: BoardRoutedContext) {
 //   const { id } = params;
 
-export async function PUR(
+export async function PUT(
   req: Request,
   context: { params: Promise<{ id: string }> }
 ) {
