@@ -1,5 +1,41 @@
 import { prisma } from "@/core/prisma";
 import { NextResponse } from "next/server";
+import { updateColumnDTO } from "../dto";
+
+interface ColumnRouteContext {
+  params: {
+    id: string;
+  };
+}
+
+export async function PUT(
+  req: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  const { id } = await context.params;
+  const boduRaw = await req.json();
+  const validateBody = updateColumnDTO.safeParse(boduRaw);
+
+  if (!validateBody.success) {
+    return NextResponse.json(validateBody.error.issues, {
+      status: 400,
+    });
+  }
+
+  const { title, width } = validateBody.data;
+
+  const findColumn = await prisma.columns.update({
+    where: {
+      id: id,
+    },
+    data: {
+      title,
+      width,
+    },
+  });
+
+  return NextResponse.json(findColumn);
+}
 
 export async function DELETE(
   req: Request,
