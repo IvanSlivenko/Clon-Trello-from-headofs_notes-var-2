@@ -6,4 +6,17 @@ export const createColumnDto = z.object({
   width: z.number().min(50).default(50),
 });
 
-export const updateColumnDTO = createColumnDto.partial();
+// export const updateColumnDTO = createColumnDto.partial();
+
+export const updateColumnDTO = createColumnDto
+  .omit({
+    boardId: true,
+  })
+  .partial();
+
+export const updateColumnsOrderDto = z.array(
+  z.object({
+    id: z.string().uuid(),
+    order: z.number(),
+  })
+);

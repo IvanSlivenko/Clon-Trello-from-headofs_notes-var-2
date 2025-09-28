@@ -28,11 +28,17 @@ export async function PUT(
     where: {
       id: id,
     },
-    data: {
-      title,
-      width,
-    },
+    data: validateBody.data,
   });
+
+  if (!findColumn) {
+    return NextResponse.json([
+      {
+        code: "not_found",
+        messages: "Column not found",
+      },
+    ]);
+  }
 
   return NextResponse.json(findColumn);
 }
