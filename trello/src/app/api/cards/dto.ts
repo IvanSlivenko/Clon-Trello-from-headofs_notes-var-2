@@ -11,3 +11,10 @@ export const updateCardDTO = createCardDto
     description: z.string().nullable(),
   })
   .partial();
+
+export const updateCardsOrderDto = z.array(
+  z.object({
+    id: z.string().uuid(),
+    order: z.number(),
+  })
+);
