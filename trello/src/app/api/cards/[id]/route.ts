@@ -1,6 +1,6 @@
 import { prisma } from "@/core/prisma";
 import { NextResponse } from "next/server";
-import { updateColumnDTO } from "../dto";
+import { updateCardDTO } from "../dto";
 
 export async function PUT(
   req: Request,
@@ -8,7 +8,7 @@ export async function PUT(
 ) {
   const { id } = await context.params;
   const boduRaw = await req.json();
-  const validateBody = updateColumnDTO.safeParse(boduRaw);
+  const validateBody = updateCardDTO.safeParse(boduRaw);
 
   if (!validateBody.success) {
     return NextResponse.json(validateBody.error.issues, {
@@ -16,31 +16,31 @@ export async function PUT(
     });
   }
 
-  // const { title, width } = validateBody.data;
-
-  const findColumn = await prisma.columns.findUnique({
+  const findCart = await prisma.cards.findUnique({
     where: {
       id: id,
     },
   });
 
-  if (!findColumn) {
+  if (!findCart) {
     return NextResponse.json([
       {
         code: "not_found",
-        messages: "Column not found",
+        messages: "Card not found",
       },
     ]);
   }
 
-  const column = await prisma.columns.update({
+  //   const { title, description} = validateBody.data;
+
+  const card = await prisma.cards.update({
     where: {
       id: id,
     },
     data: validateBody.data,
   });
 
-  return NextResponse.json(column);
+  return NextResponse.json(card);
 }
 
 export async function DELETE(
@@ -49,29 +49,29 @@ export async function DELETE(
 ) {
   const { id } = await context.params; // ✅ тепер асинхронно
 
-  const findColumn = await prisma.columns.findUnique({
+  const findCard = await prisma.cards.findUnique({
     where: {
       id: id,
     },
   });
 
-  if (!findColumn) {
+  if (!findCard) {
     return NextResponse.json([
       {
         code: "not_found",
-        messages: "Column not found",
+        messages: "Card not found",
       },
     ]);
   }
 
-  await prisma.columns.delete({
+  await prisma.cards.delete({
     where: {
       id: id,
     },
   });
 
   return NextResponse.json(
-    { message: "Column deleted successfully" },
+    { message: "Card deleted successfully" },
     { status: 200 }
   );
 }

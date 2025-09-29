@@ -2,6 +2,32 @@ import { NextResponse } from "next/server";
 import { createCardDto } from "./dto";
 import { prisma } from "@/core/prisma";
 
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const columnId = searchParams.get("columnId");
+
+  if (!columnId) {
+    return NextResponse.json(
+      {
+        code: "missing_query_param",
+        field: "columnId",
+        message: "Query param columnId is required",
+      },
+      {
+        status: 400,
+      }
+    );
+  }
+
+  if (columnId) {
+    const cards = await prisma.cards.findMany({
+      where: { columnId },
+      orderBy: { order: "asc" },
+    });
+    return NextResponse.json(cards);
+  }
+}
+
 export async function POST(req: Request) {
   const bodyRaw = await req.json();
   const validateBody = createCardDto.safeParse(bodyRaw);
