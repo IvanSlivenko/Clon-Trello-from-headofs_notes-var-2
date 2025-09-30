@@ -24,10 +24,24 @@ password dabase 4DkZ8TF7SZRYpyM8
 password : admin
 
 
-
-
-
 yarn add zod
+
+
+---------------------------------------------------- flowbite 02 : 22 : 35
+https://flowbite.com/
+
+yarn add flowbite
+
+npx tailwindcss init -p
+
+yarn add -D @tailwindcss/postcss
+
+yarn add -D autoprefixer
+
+
+........................................
+grep -R "md\\:bg-green-500" .next || echo "not found in .next"
+
 
 
 
@@ -43,4 +57,4 @@ yarn add zod
 yarn dev
 
 --------------------------------------------
-02 : 18 : 59
+02 : 30 : 52
