@@ -8,10 +8,10 @@ interface BoardRoutedContext {
   };
 }
 
-// export async function PUT(req: Request, { params }: BoardRoutedContext) {
+// export async function PATCH(req: Request, { params }: BoardRoutedContext) {
 //   const { id } = params;
 
-export async function PUT(
+export async function PATCH(
   req: Request,
   context: { params: Promise<{ id: string }> }
 ) {

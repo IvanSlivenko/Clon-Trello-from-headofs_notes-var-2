@@ -18,7 +18,11 @@ export function UserDropDown() {
   };
 
   const dropdownRef = useClickAway<HTMLDivElement>((e) => {
-    console.log(e);
+    const element = e.target as HTMLElement;
+
+    if (element.closest("#user-menu-button")) {
+      return;
+    }
 
     setIsDropDownOpened(false);
   });
@@ -64,10 +68,6 @@ export function UserDropDown() {
       </button>
       {/* <!-- Dropdown menu --> */}
       <div
-        // className={`z-50 text-base list-none bg-white divide-y divide-gray-100
-        //   rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600
-        //   absolute right-0 top-full  mt-4
-        //   ${dropdownClasses}`}
         className={twMerge(
           `z-50 text-base list-none bg-white divide-y divide-gray-100 
           rounded-lg shadow-sm dark:bg-gray-700 dark:divide-gray-600  

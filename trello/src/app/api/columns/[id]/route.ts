@@ -2,7 +2,7 @@ import { prisma } from "@/core/prisma";
 import { NextResponse } from "next/server";
 import { updateColumnDTO } from "../dto";
 
-export async function PUT(
+export async function PATCH(
   req: Request,
   context: { params: Promise<{ id: string }> }
 ) {
