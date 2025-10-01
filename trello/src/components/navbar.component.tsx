@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { UserDropDown } from "./user-dropdown.component";
 import { MenuNav } from "./menu-nav.component";
-import { Logo } from "./Logo";
+import { Logo } from "./logo";
 
 export function Navbar() {
   return (

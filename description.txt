@@ -39,8 +39,15 @@ yarn add -D @tailwindcss/postcss
 yarn add -D autoprefixer
 
 
-........................................
-grep -R "md\\:bg-green-500" .next || echo "not found in .next"
+
+yarn add clsx
+
+yarn add @uidotdev/usehooks
+
+yarn add tailwind-merge
+
+
+
 
 
 
@@ -57,4 +64,4 @@ grep -R "md\\:bg-green-500" .next || echo "not found in .next"
 yarn dev
 
 --------------------------------------------
-02 : 30 : 52
+02 : 51 : 50
