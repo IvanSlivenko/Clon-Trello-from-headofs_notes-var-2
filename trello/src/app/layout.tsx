@@ -5,6 +5,10 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Trello Clone",
   description: "Trello Clone build with Next.js and Tailwind.css",
+  viewport: {
+    width: "device-width",
+    initialScale: 1.0,
+  },
 };
 
 export default function RootLayout({
