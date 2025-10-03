@@ -52,6 +52,9 @@ yarn add tailwind-merge
 yarn add @tanstack/react-query@4
 
 
+yarn add axios
+
+
 
 
 
@@ -60,4 +63,4 @@ yarn add @tanstack/react-query@4
 yarn dev
 
 --------------------------------------------
-03 : 24 : 02
+03 : 30 : 21
