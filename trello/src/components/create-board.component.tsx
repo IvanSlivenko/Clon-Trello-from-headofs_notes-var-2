@@ -1,7 +1,19 @@
-import Link from "next/link";
+import z from "zod";
 import { Input } from "./input.component";
+import { useForm } from "react-hook-form";
+import { title } from "process";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const createBoardsSchema = z.object({
+  title: z.string().max(20),
+});
+
+type CreateBoardValues = z.infer<typeof createBoardsSchema>;
 
 export function CreateBoard() {
+  const {} = useForm<CreateBoardValues>({
+    resolver: zodResolver(createBoardsSchema),
+  });
   return (
     <div className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 cursor-pointer">
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
