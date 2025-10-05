@@ -61,6 +61,7 @@ export function UserDropDown() {
             src="/assets/profile-picture-3.jpg"
             alt="user photo"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="rounded-full object-cover"
             id="user-avatar"
           />

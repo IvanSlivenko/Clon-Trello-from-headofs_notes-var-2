@@ -4,13 +4,17 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const createBoardsSchema = z.object({
-  title: z.string().max(20),
+  title: z.string().min(1).max(20),
 });
 
 type CreateBoardValues = z.infer<typeof createBoardsSchema>;
 
 export function CreateBoard() {
-  const { register, handleSubmit } = useForm<CreateBoardValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateBoardValues>({
     resolver: zodResolver(createBoardsSchema),
   });
 
@@ -24,7 +28,7 @@ export function CreateBoard() {
         + Create a new board
       </h5>
       <form onSubmit={onSubmit}>
-        <Input {...register("title")} />
+        <Input {...register("title")} error={errors.title?.message} />
       </form>
     </div>
   );

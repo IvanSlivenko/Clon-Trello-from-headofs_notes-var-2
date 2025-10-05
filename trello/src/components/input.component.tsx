@@ -1,18 +1,22 @@
 "use client";
 
-import { ComponentProps, useId } from "react";
+import { error } from "console";
+import { ComponentProps, forwardRef, useId } from "react";
 
 interface InputProps {
   label?: string;
   type?: ComponentProps<"input">["type"];
   placeholder?: string;
+  error?: string;
   name: string;
   onBlur: ComponentProps<"input">["onBlur"];
   onChange: ComponentProps<"input">["onChange"];
-  ref: ComponentProps<"input">["ref"];
 }
 
-export function Input({ label, type = "text", ...inputProps }: InputProps) {
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { label, type = "text", error, ...inputProps }: InputProps,
+  ref
+) {
   const id = useId();
 
   return (
@@ -29,9 +33,14 @@ export function Input({ label, type = "text", ...inputProps }: InputProps) {
         type={type}
         id={id}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        ref={ref}
         {...inputProps}
-        // required
       />
+      {error && (
+        <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+          <span className="font-medium">Oops!</span> {error}
+        </p>
+      )}
     </div>
   );
-}
+});
