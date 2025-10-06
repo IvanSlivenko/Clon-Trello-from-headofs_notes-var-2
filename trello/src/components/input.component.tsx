@@ -8,6 +8,7 @@ interface InputProps {
   type?: ComponentProps<"input">["type"];
   placeholder?: string;
   error?: string;
+  disabled?: boolean;
   name: string;
   onBlur: ComponentProps<"input">["onBlur"];
   onChange: ComponentProps<"input">["onChange"];

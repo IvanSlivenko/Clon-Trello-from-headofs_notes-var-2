@@ -2,6 +2,8 @@ import z from "zod";
 import { Input } from "./input.component";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useCreateBoard } from "@/hooks/use-create-board";
 
 const createBoardsSchema = z.object({
   title: z.string().min(1).max(20),
@@ -10,26 +12,44 @@ const createBoardsSchema = z.object({
 type CreateBoardValues = z.infer<typeof createBoardsSchema>;
 
 export function CreateBoard() {
+  const [isFormOpened, setIsFormOpened] = useState(false);
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<CreateBoardValues>({
     resolver: zodResolver(createBoardsSchema),
   });
 
-  const onSubmit = handleSubmit((values) => {
-    console.log(values);
+  const { mutateAsync } = useCreateBoard();
+
+  const onSubmit = handleSubmit(async (values) => {
+    await mutateAsync(values);
+    setIsFormOpened(false);
   });
 
+  const openForm = () => setIsFormOpened(true);
+
   return (
-    <div className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 cursor-pointer">
-      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-        + Create a new board
-      </h5>
-      <form onSubmit={onSubmit}>
-        <Input {...register("title")} error={errors.title?.message} />
-      </form>
+    <div
+      className="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 cursor-pointer"
+      onClick={openForm}
+    >
+      {isFormOpened ? (
+        <form onSubmit={onSubmit}>
+          <Input
+            {...register("title")}
+            placeholder="Enter your board title"
+            error={errors.title?.message}
+            disabled={isSubmitting}
+          />
+        </form>
+      ) : (
+        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          + Create a new board
+        </h5>
+      )}
     </div>
   );
 }
