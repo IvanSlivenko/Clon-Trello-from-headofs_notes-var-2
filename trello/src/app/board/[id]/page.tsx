@@ -1,5 +1,6 @@
 // "use client";
 
+import { CreateColumn } from "@/components/create-column.component";
 import { prisma } from "@/core/prisma";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -41,6 +42,7 @@ export default async function BoardPage({ params }: PageProps) {
           </div>
         </div>
       </div>
+      {/* <CreateColumn /> */}
     </div>
   );
 }

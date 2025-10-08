@@ -6,6 +6,8 @@ export const createColumnDto = z.object({
   width: z.number().min(50).default(50),
 });
 
+export type createColumnDto = z.infer<typeof createColumnDto>;
+
 // export const updateColumnDTO = createColumnDto.partial();
 
 export const updateColumnDTO = createColumnDto
