@@ -1,8 +1,7 @@
 // "use client";
 
-import { CreateColumn } from "@/components/create-column.component";
+import { ColumnsList } from "@/components/columns-list.component";
 import { prisma } from "@/core/prisma";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface PageParams {
@@ -18,6 +17,16 @@ export default async function BoardPage({ params }: PageProps) {
     where: {
       id: id,
     },
+    include: {
+      columns: {
+        orderBy: {
+          order: "asc",
+        },
+        include: {
+          cards: true,
+        },
+      },
+    },
   });
 
   if (!board) {
@@ -25,24 +34,17 @@ export default async function BoardPage({ params }: PageProps) {
   }
 
   return (
-    <div
-      className="container mx-auto"
-      style={{
-        height: "calc(100% - 2.5rem - 4rem - 2.5rem - 2rem)",
-      }}
-    >
-      {/* {JSON.stringify(board, null, 2)} */}
-      <h1 className="text-white text-4xl text-center mb-8">{board.title}</h1>
-      <div className="flex h-full">
-        <div className="block  h-full w-full p-4 border rounded-lg shadow-sm bg-gray-800 border-gray-700">
-          <div>
-            <h5 className="text-lg font-bold tracking-tight text-white">
-              Column name
-            </h5>
-          </div>
-        </div>
+    <>
+      <div
+        className="container mx-auto"
+        // style={{
+        //   height: "calc(100% - 2.5rem - 4rem - 2.5rem - 2rem)",
+        // }}
+      >
+        {/* {JSON.stringify(board, null, 2)} */}
+        <h1 className="text-white text-4xl text-center mb-8">{board.title}</h1>
       </div>
-      {/* <CreateColumn /> */}
-    </div>
+      <ColumnsList board={board} />
+    </>
   );
 }

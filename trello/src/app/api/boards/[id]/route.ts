@@ -8,8 +8,37 @@ interface BoardRoutedContext {
   };
 }
 
-// export async function PATCH(req: Request, { params }: BoardRoutedContext) {
-//   const { id } = params;
+export async function GET(
+  req: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  // const { id } = params;
+  const { id } = await context.params;
+  const board = await prisma.boards.findUnique({
+    where: {
+      id: id,
+    },
+    include: {
+      columns: {
+        orderBy: {
+          order: "asc",
+        },
+        include: {
+          cards: true,
+        },
+      },
+    },
+  });
+  if (!board) {
+    return NextResponse.json([
+      {
+        code: "not_found",
+        messages: "Board bot found",
+      },
+    ]);
+  }
+  return NextResponse.json(board);
+}
 
 export async function PATCH(
   req: Request,
@@ -50,9 +79,6 @@ export async function PATCH(
 
   return NextResponse.json(updatedBoard);
 }
-
-// export async function DELETE(req: Request, { params }: BoardRoutedContext) {
-//   const { id } = params;
 
 export async function DELETE(
   req: Request,
