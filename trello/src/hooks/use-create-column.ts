@@ -6,6 +6,7 @@ import { createColumnDto as CreateColumnDtoOriginal } from "@/app/api/columns/dt
 import { api } from "@/core/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useBoardsQueryKey } from "./use-boards";
+import { BoardPayload } from "./use-board-query";
 
 type CreateColumnDto = Omit<CreateColumnDtoOriginal, "width">;
 
@@ -24,9 +25,23 @@ export const useCreateColumnMutation = ({
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: createColumnFn,
-    onSuccess: () => {
-      const data = queryClient.getQueryData(["board", boardId]);
-      console.log("data", data);
+    onSuccess: (newColumn) => {
+      const data = queryClient.getQueryData<BoardPayload>(["board", boardId]);
+
+      if (!data) {
+        return;
+      }
+
+      const columns = data.columns ?? [];
+      columns.push({
+        ...newColumn,
+        cards: [],
+      });
+      console.log(columns);
+      queryClient.setQueryData(["board", boardId], {
+        ...data,
+        columns,
+      });
     },
     // onSettled: () => {
     //   queryClient.invalidateQueries(useBoardsQueryKey);
