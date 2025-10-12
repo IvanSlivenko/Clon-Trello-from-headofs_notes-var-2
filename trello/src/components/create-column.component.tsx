@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useCreateBoard } from "@/hooks/use-create-board";
+import { useCreateColumnMutation } from "@/hooks/use-create-column";
 
 const createColumnSchema = z.object({
   title: z.string().min(1).max(20),
@@ -11,7 +12,11 @@ const createColumnSchema = z.object({
 
 type CreateColumnValues = z.infer<typeof createColumnSchema>;
 
-export function CreateColumn() {
+interface CreateColumnProps {
+  boardId: string;
+}
+
+export function CreateColumn({ boardId }: CreateColumnProps) {
   const [isFormOpened, setIsFormOpened] = useState(false);
 
   const {
@@ -22,10 +27,13 @@ export function CreateColumn() {
     resolver: zodResolver(createColumnSchema),
   });
 
-  const { mutateAsync } = useCreateBoard();
+  const { mutateAsync } = useCreateColumnMutation();
 
   const onSubmit = handleSubmit(async (values) => {
-    await mutateAsync(values);
+    await mutateAsync({
+      ...values,
+      boardId: boardId,
+    });
     setIsFormOpened(false);
   });
 

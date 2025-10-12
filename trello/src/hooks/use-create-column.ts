@@ -1,10 +1,13 @@
+import { CreateColumn } from "@/components/create-column.component";
 import { Columns } from "@prisma/client";
-import { createColumnDto } from "@/app/api/columns/dto";
+import { createColumnDto as CreateColumnDtoOriginal } from "@/app/api/columns/dto";
 import { api } from "@/core/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useBoardsQueryKey } from "./use-boards";
 
-const createColumnFn = async (column: createColumnDto) => {
+type CreateColumnDto = Omit<CreateColumnDtoOriginal, "width">;
+
+const createColumnFn = async (column: CreateColumnDto) => {
   const { data } = await api.post<Columns>("api/columns", column);
   return data;
 };
