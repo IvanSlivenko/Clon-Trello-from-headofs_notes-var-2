@@ -1,3 +1,5 @@
+import { BoardCard } from ".";
+import { useCreateColumnMutation } from "@/hooks/use-create-column";
 import { CreateColumn } from "@/components/create-column.component";
 import { Columns } from "@prisma/client";
 import { createColumnDto as CreateColumnDtoOriginal } from "@/app/api/columns/dto";
@@ -12,13 +14,23 @@ const createColumnFn = async (column: CreateColumnDto) => {
   return data;
 };
 
-export const useCreateColumnMutation = () => {
+interface UseCreateColumnMutationOptions {
+  boardId: string;
+}
+
+export const useCreateColumnMutation = ({
+  boardId,
+}: UseCreateColumnMutationOptions) => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: createColumnFn,
-    onSettled: () => {
-      queryClient.invalidateQueries(useBoardsQueryKey);
+    onSuccess: () => {
+      const data = queryClient.getQueryData(["board", boardId]);
+      console.log("data", data);
     },
+    // onSettled: () => {
+    //   queryClient.invalidateQueries(useBoardsQueryKey);
+    // },
   });
   return mutation;
 };

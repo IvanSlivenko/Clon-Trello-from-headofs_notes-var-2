@@ -1,5 +1,6 @@
 "use client";
 import { useBoardQuery, BoardPayload } from "@/hooks/use-board-query";
+import { CreateColumn } from "./create-column.component";
 
 interface ColumnsListProps {
   board: BoardPayload;
@@ -30,6 +31,7 @@ export function ColumnsList({ board }: ColumnsListProps) {
           </div>
         );
       })}
+      <CreateColumn boardId={board.id} />
     </div>
   );
 }
