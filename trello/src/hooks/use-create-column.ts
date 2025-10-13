@@ -26,22 +26,24 @@ export const useCreateColumnMutation = ({
   const mutation = useMutation({
     mutationFn: createColumnFn,
     onSuccess: (newColumn) => {
+      // onMutate: (newColumn) => {
       const data = queryClient.getQueryData<BoardPayload>(["board", boardId]);
 
       if (!data) {
         return;
       }
 
-      const columns = data.columns ?? [];
+      // const columns = data.columns ?? [];
+      const columns = [...data.columns];
       columns.push({
         ...newColumn,
         cards: [],
       });
-      console.log(columns);
-      queryClient.setQueryData(["board", boardId], {
-        ...data,
+      // console.log(columns);
+      queryClient.setQueryData<BoardPayload>(["board", boardId], (old) => ({
+        ...old!,
         columns,
-      });
+      }));
     },
     // onSettled: () => {
     //   queryClient.invalidateQueries(useBoardsQueryKey);

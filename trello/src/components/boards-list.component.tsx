@@ -1,8 +1,8 @@
 "use client";
 
-import { BoardCard } from ".";
+import { BoardCard, CreateBoard } from ".";
 import { Boards } from "../../generated/prisma/client";
-import { CreateBoard } from "./create-board.component";
+// import { CreateBoard } from "./create-board.component";
 
 import { ResponsiveGrid } from "./ResponsiveGrid";
 import { useBoards } from "@/hooks/use-boards";

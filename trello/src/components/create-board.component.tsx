@@ -1,3 +1,5 @@
+"use client";
+
 import z from "zod";
 import { Input } from "./input.component";
 import { useForm } from "react-hook-form";
