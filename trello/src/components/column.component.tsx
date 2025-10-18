@@ -1,47 +1,41 @@
 "use client";
 
 import { Columns } from "@prisma/client";
-import { useState, DragEvent } from "react";
+import { useState, DragEvent, useRef } from "react";
 
 interface ColumnProps {
   column: Columns;
 }
 
 export function Column({ column }: ColumnProps) {
-  const [initialDraX, setInitialDragX] = useState(0);
+  const initialDraX = useRef<number>(0);
+
+  // const [initialDraX, setInitialDragX] = useState(0);
   const [width, setWidth] = useState(column.width);
 
   const onResizeStart = (e: DragEvent<HTMLDivElement>) => {
-    console.log("resize start", e);
-    setInitialDragX(e.clientX);
+    // console.log("resize start", e);
+    // setInitialDragX(e.clientX);
+    // console.log(e);
+
+    initialDraX.current = e.clientX;
   };
 
   const onResize = (e: DragEvent<HTMLDivElement>) => {
-    console.log("resize");
-    const movedBy = e.clientX - initialDraX;
-    setInitialDragX(e.clientX);
-    setWidth(width + movedBy);
+    const movedBy = e.clientX - initialDraX.current;
+    if (e.clientX === 0) return;
+
+    // setInitialDragX(e.clientX);
+    // console.log("movedBy", movedBy);
+    initialDraX.current = e.clientX;
+    setWidth((width) => width + movedBy);
   };
 
   return (
     <div
       className="block h-full w-full p-4 border rounded-lg shadow-sm bg-gray-800 border-gray-700"
-      // style={{
-      //   // minWidth: column.width,
-      //   minWidth: width,
-      //   // width: column.width,
-      //   width: width,
-      //   //   width: 700,
-      //   //   minWidth: 700,
-      // }}
-
-      // style={{
-      //   minWidth: isFinite(column.width) ? `${column.width}px` : "200px", // дефолтне значення
-      // }}
-
       style={{
         minWidth: `${width}px`,
-        // minWidth: `${column.width}px`,
         width: `${width}px`,
       }}
     >
