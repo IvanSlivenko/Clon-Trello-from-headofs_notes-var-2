@@ -1,6 +1,6 @@
 import { api } from "@/core/api";
-import { Boards, Prisma } from "@prisma/client";
-import { useBoardsQueryKey } from "./use-boards";
+import { Prisma } from "@prisma/client";
+import { useBoardsQueryKey } from "./use-boards-query";
 import { useQueries, useQuery } from "@tanstack/react-query";
 
 export type BoardPayload = Prisma.BoardsGetPayload<{
@@ -12,11 +12,11 @@ const getBoardFn = async (boardId: string) => {
   return data;
 };
 
-interface UseBoardQueryOptions {
+interface UseBoardsQueryOptions {
   initialData: BoardPayload;
 }
 
-export const useBoardQuery = ({ initialData }: UseBoardQueryOptions) => {
+export const useBoardsQuery = ({ initialData }: UseBoardsQueryOptions) => {
   const query = useQuery({
     queryKey: ["board", initialData.id],
     queryFn: () => getBoardFn(initialData.id),

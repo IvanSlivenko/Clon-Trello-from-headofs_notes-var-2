@@ -1,15 +1,20 @@
 "use client";
 
-import { Columns } from "@prisma/client";
+import { ColumnPayload, useColumnQuery } from "@/hooks/use-column-query";
+// import { Columns } from "@prisma/client";
+import { useQuery } from "@tanstack/react-query";
 import { useState, DragEvent, useRef } from "react";
 
 interface ColumnProps {
-  column: Columns;
+  // column: Columns;
+  column: ColumnPayload;
 }
 
 const MIN_WIDTH = 200;
 
 export function Column({ column }: ColumnProps) {
+  const {} = useColumnQuery({ initialData: column });
+
   const initialDraX = useRef<number>(0);
   const [width, setWidth] = useState(column.width);
 

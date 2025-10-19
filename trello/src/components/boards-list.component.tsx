@@ -5,7 +5,7 @@ import { Boards } from "../../generated/prisma/client";
 // import { CreateBoard } from "./create-board.component";
 
 import { ResponsiveGrid } from "./ResponsiveGrid";
-import { useBoards } from "@/hooks/use-boards";
+import { useBoards } from "@/hooks/use-boards-query";
 
 interface BoardsList {
   initialData: Boards[];

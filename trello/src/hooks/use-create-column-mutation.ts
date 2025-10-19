@@ -1,11 +1,10 @@
 import { BoardCard } from ".";
-import { useCreateColumnMutation } from "@/hooks/use-create-column";
 import { CreateColumn } from "@/components/create-column.component";
 import { Columns } from "@prisma/client";
 import { createColumnDto as CreateColumnDtoOriginal } from "@/app/api/columns/dto";
 import { api } from "@/core/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useBoardsQueryKey } from "./use-boards";
+import { useBoardsQueryKey } from "./use-boards-query";
 import { BoardPayload } from "./use-board-query";
 
 type CreateColumnDto = Omit<CreateColumnDtoOriginal, "width">;

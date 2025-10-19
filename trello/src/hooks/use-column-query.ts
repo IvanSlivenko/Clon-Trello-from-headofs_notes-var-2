@@ -1,0 +1,29 @@
+import { api } from "@/core/api";
+import { Columns } from "./../../generated/prisma/index.d";
+import { Prisma } from "@prisma/client";
+import { useQuery } from "@tanstack/react-query";
+
+export type ColumnPayload = Prisma.ColumnsGetPayload<{
+  include: { cards: true };
+}>;
+
+const getColumnFn = async (columnId: string) => {
+  //   const { data } = await api.get<ColumnPayload>(`/api/columns/${columnId}`);
+  const { data } = await api.get<ColumnPayload>(`/columns/${columnId}`);
+  return data;
+};
+
+interface UseColumnQueryOptions {
+  initialData: ColumnPayload;
+}
+
+export const useColumnQuery = ({ initialData }: UseColumnQueryOptions) => {
+  const query = useQuery<ColumnPayload>({
+    queryKey: ["column", initialData.id],
+    queryFn: () => getColumnFn(initialData.id),
+    initialData,
+    // placeholderData: initialData,
+  });
+
+  return query;
+};
