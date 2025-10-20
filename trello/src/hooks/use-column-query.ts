@@ -18,11 +18,14 @@ interface UseColumnQueryOptions {
 }
 
 export const useColumnQuery = ({ initialData }: UseColumnQueryOptions) => {
-  const query = useQuery<ColumnPayload>({
-    queryKey: ["column", initialData.id],
+  const query = useQuery<ColumnPayload>(["column", initialData.id], {
+    // queryKey: ["column", initialData.id],
     queryFn: () => getColumnFn(initialData.id),
     initialData,
     // placeholderData: initialData,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   return query;

@@ -13,10 +13,11 @@ interface ColumnProps {
 const MIN_WIDTH = 200;
 
 export function Column({ column }: ColumnProps) {
-  const {} = useColumnQuery({ initialData: column });
+  const { data } = useColumnQuery({ initialData: column });
 
   const initialDraX = useRef<number>(0);
-  const [width, setWidth] = useState(column.width);
+  // const [width, setWidth] = useState(column.width);
+  const [width, setWidth] = useState(data.width);
 
   const onResizeStart = (e: DragEvent<HTMLDivElement>) => {
     initialDraX.current = e.clientX;
@@ -45,7 +46,7 @@ export function Column({ column }: ColumnProps) {
       <div>
         {/* <div className="relative"> */}
         <h5 className="text-lg font-bold tracking-tight text-white">
-          {column.title}
+          {data.title}
         </h5>
         <div
           // className="absolute right-0 top-0 cursor-move w-px h-full bg-gray-700  rounded-lg border border-0 my-[5px] "
