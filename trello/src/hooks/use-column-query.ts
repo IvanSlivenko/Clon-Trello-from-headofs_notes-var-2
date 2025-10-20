@@ -9,7 +9,7 @@ export type ColumnPayload = Prisma.ColumnsGetPayload<{
 
 const getColumnFn = async (columnId: string) => {
   //   const { data } = await api.get<ColumnPayload>(`/api/columns/${columnId}`);
-  const { data } = await api.get<ColumnPayload>(`/columns/${columnId}`);
+  const { data } = await api.get<ColumnPayload>(`/api/columns/${columnId}`);
   return data;
 };
 

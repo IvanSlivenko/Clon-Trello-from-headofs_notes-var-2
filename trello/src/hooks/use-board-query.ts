@@ -16,12 +16,12 @@ interface UseBoardsQueryOptions {
   initialData: BoardPayload;
 }
 
-export const useBoardsQuery = ({ initialData }: UseBoardsQueryOptions) => {
+export const useBoardQuery = ({ initialData }: UseBoardsQueryOptions) => {
   const query = useQuery({
     queryKey: ["board", initialData.id],
     queryFn: () => getBoardFn(initialData.id),
-    // initialData,
-    placeholderData: initialData,
+    initialData,
+    // placeholderData: initialData,
   });
 
   return query;

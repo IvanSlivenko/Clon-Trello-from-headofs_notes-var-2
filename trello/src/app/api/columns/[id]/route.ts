@@ -2,6 +2,30 @@ import { prisma } from "@/core/prisma";
 import { NextResponse } from "next/server";
 import { updateColumnDTO } from "../dto";
 
+export async function GET(
+  req: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  const { id } = await context.params;
+
+  const column = await prisma.columns.findUnique({
+    where: {
+      id: id,
+    },
+    include: { cards: true },
+  });
+
+  if (!column) {
+    return NextResponse.json([
+      {
+        code: "not_found",
+        messages: "Column not found",
+      },
+    ]);
+  }
+  return NextResponse.json(column);
+}
+
 export async function PATCH(
   req: Request,
   context: { params: Promise<{ id: string }> }

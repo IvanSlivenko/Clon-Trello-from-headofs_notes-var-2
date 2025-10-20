@@ -1,5 +1,5 @@
 "use client";
-import { useBoardsQuery, BoardPayload } from "@/hooks/use-board-query";
+import { useBoardQuery, BoardPayload } from "@/hooks/use-board-query";
 import { CreateColumn } from "./create-column.component";
 import { Column } from "./column.component";
 
@@ -8,7 +8,7 @@ interface ColumnsListProps {
 }
 
 export function ColumnsList({ board }: ColumnsListProps) {
-  const { data } = useBoardsQuery({ initialData: board });
+  const { data } = useBoardQuery({ initialData: board });
 
   return (
     <div className="flex h-[80vh] gap-8  overflow-x-scroll w-full h-content px-40 pb-5">
