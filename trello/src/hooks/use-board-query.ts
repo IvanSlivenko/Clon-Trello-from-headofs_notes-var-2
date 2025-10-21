@@ -1,7 +1,10 @@
+"use client"
+
 import { api } from "@/core/api";
 import { Prisma } from "@prisma/client";
 import { useBoardsQueryKey } from "./use-boards-query";
 import { useQueries, useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 export type BoardPayload = Prisma.BoardsGetPayload<{
   include: { columns: { include: { cards: true } } };
@@ -23,6 +26,9 @@ export const useBoardQuery = ({ initialData }: UseBoardsQueryOptions) => {
     initialData,
     // placeholderData: initialData,
   });
+
+  const [isFirstRender, setIsFirstRender] = useState(true);
+  useEffect(() => {}, [query.data]);
 
   return query;
 };
