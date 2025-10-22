@@ -3,7 +3,7 @@
 import { ColumnPayload, useColumnQuery } from "@/hooks/use-column-query";
 // import { Columns } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
-import { useState, DragEvent, useRef } from "react";
+import { useState, DragEvent, useRef, useEffect } from "react";
 
 interface ColumnProps {
   // column: Columns;
@@ -17,7 +17,17 @@ export function Column({ column }: ColumnProps) {
 
   const initialDraX = useRef<number>(0);
   // const [width, setWidth] = useState(column.width);
-  const [width, setWidth] = useState(data.width);
+  // const [width, setWidth] = useState(data.width);
+
+  // ⚙️ 1. Спочатку — null, щоб уникнути розбіжності SSR/CSR
+  const [width, setWidth] = useState<number | null>(null);
+
+  // ⚙️ 2. Ініціалізуємо тільки на клієнті
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setWidth(data.width || MIN_WIDTH);
+    }
+  }, [data.width]);
 
   const onResizeStart = (e: DragEvent<HTMLDivElement>) => {
     initialDraX.current = e.clientX;

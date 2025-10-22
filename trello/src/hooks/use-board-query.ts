@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import { api } from "@/core/api";
 import { Prisma } from "@prisma/client";
 import { useBoardsQueryKey } from "./use-boards-query";
-import { useQueries, useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 export type BoardPayload = Prisma.BoardsGetPayload<{
@@ -20,6 +20,8 @@ interface UseBoardsQueryOptions {
 }
 
 export const useBoardQuery = ({ initialData }: UseBoardsQueryOptions) => {
+  const queryClient = useQueryClient();
+
   const query = useQuery({
     queryKey: ["board", initialData.id],
     queryFn: () => getBoardFn(initialData.id),
@@ -28,7 +30,15 @@ export const useBoardQuery = ({ initialData }: UseBoardsQueryOptions) => {
   });
 
   const [isFirstRender, setIsFirstRender] = useState(true);
-  useEffect(() => {}, [query.data]);
+  useEffect(() => {
+    if (isFirstRender) {
+      setIsFirstRender(false);
+      return;
+    }
+    query.data.columns.forEach((column) => {
+      queryClient.setQueryData(["column", column.id], () => column);
+    });
+  }, [query.data]);
 
   return query;
 };

@@ -6,7 +6,7 @@ export const createColumnDto = z.object({
   width: z.number().min(200).default(200),
 });
 
-export type createColumnDto = z.infer<typeof createColumnDto>;
+export type CreateColumnDto = z.infer<typeof createColumnDto>;
 
 // export const updateColumnDTO = createColumnDto.partial();
 
@@ -15,6 +15,8 @@ export const updateColumnDTO = createColumnDto
     boardId: true,
   })
   .partial();
+
+export type UpdateColumnDto = z.infer<typeof updateColumnDTO>;
 
 export const updateColumnsOrderDto = z.array(
   z.object({
