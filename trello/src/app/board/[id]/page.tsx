@@ -1,5 +1,6 @@
 // "use client";
 
+import { BoardTitle } from "@/components";
 import { ColumnsList } from "@/components/columns-list.component";
 import { prisma } from "@/core/prisma";
 import { notFound } from "next/navigation";
@@ -42,7 +43,8 @@ export default async function BoardPage({ params }: PageProps) {
         // }}
       >
         {/* {JSON.stringify(board, null, 2)} */}
-        <h1 className="text-white text-4xl text-center mb-8">{board.title}</h1>
+        {/* <h1 className="text-white text-4xl text-center mb-8">{board.title}</h1> */}
+        <BoardTitle boardId={board.id} />
       </div>
       <ColumnsList board={board} />
     </>

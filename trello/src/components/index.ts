@@ -8,3 +8,4 @@ export * from "./create-board.component";
 export * from "./create-column.component";
 export * from "./input.component";
 export * from "./column.component";
+export * from "./board-title.component";

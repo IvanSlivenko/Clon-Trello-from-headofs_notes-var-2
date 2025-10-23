@@ -1,6 +1,7 @@
 "use client";
 
 import { ColumnPayload, useColumnQuery } from "@/hooks/use-column-query";
+import { useUpdateColumnMutation } from "@/hooks/use-update-column-mutation";
 // import { Columns } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { useState, DragEvent, useRef, useEffect } from "react";
@@ -45,6 +46,12 @@ export function Column({ column }: ColumnProps) {
     });
   };
 
+  const { mutateAsync } = useUpdateColumnMutation();
+
+  const onResizeEnd = async () => {
+    await mutateAsync({ columnId: data.id, data: { width } });
+  };
+
   return (
     <div
       className="block h-full w-full p-4 border rounded-lg shadow-sm bg-gray-800 border-gray-700 relative"
@@ -65,6 +72,7 @@ export function Column({ column }: ColumnProps) {
           draggable
           onDragStart={onResizeStart}
           onDrag={onResize}
+          onDragEnd={onResizeEnd}
         ></div>
       </div>
     </div>

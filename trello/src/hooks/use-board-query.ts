@@ -16,15 +16,19 @@ const getBoardFn = async (boardId: string) => {
 };
 
 interface UseBoardsQueryOptions {
-  initialData: BoardPayload;
+  initialData?: BoardPayload;
+  boardId: string;
 }
 
-export const useBoardQuery = ({ initialData }: UseBoardsQueryOptions) => {
+export const useBoardQuery = ({
+  initialData,
+  boardId,
+}: UseBoardsQueryOptions) => {
   const queryClient = useQueryClient();
 
   const query = useQuery({
-    queryKey: ["board", initialData.id],
-    queryFn: () => getBoardFn(initialData.id),
+    queryKey: ["board", initialData?.id ?? boardId],
+    queryFn: () => getBoardFn(initialData?.id ?? boardId),
     initialData,
     // placeholderData: initialData,
   });
@@ -35,6 +39,11 @@ export const useBoardQuery = ({ initialData }: UseBoardsQueryOptions) => {
       setIsFirstRender(false);
       return;
     }
+
+    if (!query.data) {
+      return;
+    }
+
     query.data.columns.forEach((column) => {
       queryClient.setQueryData(["column", column.id], () => column);
     });
