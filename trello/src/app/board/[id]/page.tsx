@@ -36,9 +36,9 @@ export default async function BoardPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="container mx-auto">
+      {/* <div className="container mx-auto">
         <BoardTitle title={board.title} />
-      </div>
+      </div> */}
       <ColumnsList board={board} />
     </>
   );

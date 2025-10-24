@@ -1,6 +1,8 @@
 import { UpdateBoardDto } from "@/app/api/boards/dto";
 import { BoardPayload } from "./use-board-query";
 import { Boards } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
+import { api } from "@/core/api";
 
 const updateBoardFn = async (boardId: string, data: UpdateBoardDto) => {
   const { data: board } = await api.patch<Boards>(
