@@ -36,15 +36,8 @@ export default async function BoardPage({ params }: PageProps) {
 
   return (
     <>
-      <div
-        className="container mx-auto"
-        // style={{
-        //   height: "calc(100% - 2.5rem - 4rem - 2.5rem - 2rem)",
-        // }}
-      >
-        {/* {JSON.stringify(board, null, 2)} */}
-        {/* <h1 className="text-white text-4xl text-center mb-8">{board.title}</h1> */}
-        <BoardTitle boardId={board.id} />
+      <div className="container mx-auto">
+        <BoardTitle title={board.title} />
       </div>
       <ColumnsList board={board} />
     </>

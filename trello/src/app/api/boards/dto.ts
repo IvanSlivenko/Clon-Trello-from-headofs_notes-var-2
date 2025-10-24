@@ -6,4 +6,6 @@ export const createBoardDto = z.object({
 
 export type CreateBoardDto = z.infer<typeof createBoardDto>;
 
-export const updateBoardDTO = createBoardDto.partial();
+export const updateBoardDto = createBoardDto.partial();
+
+export type UpdateBoardDto = z.infer<typeof updateBoardDto>;
