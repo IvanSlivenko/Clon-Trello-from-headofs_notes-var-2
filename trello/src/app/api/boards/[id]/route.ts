@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { updateBoardDTO } from "../dto";
+import { updateBoardDto } from "../dto";
 import { prisma } from "@/core/prisma";
 
 interface BoardRoutedContext {
@@ -11,9 +11,11 @@ interface BoardRoutedContext {
 export async function GET(
   req: Request,
   context: { params: Promise<{ id: string }> }
+  // { params }: BoardRoutedContext
 ) {
-  // const { id } = params;
   const { id } = await context.params;
+  // const { id } = params;
+
   const board = await prisma.boards.findUnique({
     where: {
       id: id,
@@ -43,11 +45,13 @@ export async function GET(
 export async function PATCH(
   req: Request,
   context: { params: Promise<{ id: string }> }
+  // { params }: BoardRoutedContext
 ) {
   const { id } = await context.params; // ✅ тепер асинхронно
+  // const { id } = params;
 
   const boduRaw = await req.json();
-  const validateBody = updateBoardDTO.safeParse(boduRaw);
+  const validateBody = updateBoardDto.safeParse(boduRaw);
 
   if (!validateBody.success) {
     return NextResponse.json(validateBody.error.issues, {
@@ -83,8 +87,10 @@ export async function PATCH(
 export async function DELETE(
   req: Request,
   context: { params: Promise<{ id: string }> }
+  // { params }: BoardRoutedContext
 ) {
   const { id } = await context.params; // ✅ тепер асинхронно
+  // const { id } = params;
 
   const findBoard = await prisma.boards.findUnique({
     where: {

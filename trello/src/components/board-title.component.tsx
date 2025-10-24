@@ -1,18 +1,33 @@
 "use client";
 
+import { useBoardQuery, useCachedBoardQuery } from "@/hooks/use-board-query";
 import { useUpdateBoardMutation } from "@/hooks/use-update-board-mutation";
 import clsx from "clsx";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface BoardTitleProps {
-  // title: string;
+  title: string;
   boardId: string;
 }
 
-export function BoardTitle({ boardId }: BoardTitleProps) {
+export function BoardTitle({ boardId, title }: BoardTitleProps) {
+  const { data } = useCachedBoardQuery({ boardId });
   const [isEditing, setIsEditing] = useState(false);
-  // const [localTitle, setLocalTitle] = useState(title);
+  const titleRef = useRef<HTMLHeadElement>(null);
+
+  const { mutate } = useUpdateBoardMutation();
+
+  useEffect(() => {
+    if (data?.title && titleRef.current) {
+      titleRef.current.innerText = data.title;
+    }
+  }, [data?.title]);
+
+  const titleClasses = clsx({
+    "cursor-pointer": !isEditing,
+    "cursor-text": isEditing,
+  });
 
   const turnOnEditing = () => {
     if (isEditing) {
@@ -21,84 +36,29 @@ export function BoardTitle({ boardId }: BoardTitleProps) {
     setIsEditing(true);
   };
 
-  const titleRef = useRef<HTMLHeadElement>(null);
-
-  const titleClasses = clsx({
-    "cursor-pointer": !isEditing,
-    "cursor-text": isEditing,
-  });
-
-  const { mutate } = useUpdateBoardMutation();
-
   const onBlur = () => {
     setIsEditing(false);
     mutate({
       boardId: boardId,
       data: {
-        title: {
-          titleRef.current?.innerText || "",
-        }
-      }
-    })
+        title: titleRef.current?.innerText || "Untitled",
+      },
+    });
   };
-
-  // const onBlur = () => {
-  //   setIsEditing(false);
-  //   const newTitle = titleRef.current?.innerText.trim() || "";
-  //   if (newTitle && newTitle !== title) {
-  //     mutate({
-  //       boardId,
-  //       data: { title: newTitle },
-  //     });
-  //   }
-  // };
-
-  // const handleBlur = () => {
-  //   setIsEditing(false);
-  //   if (localTitle.trim() !== title) {
-  //     mutate({
-  //       boardId,
-  //       data: { title: localTitle },
-  //     });
-  //   }
-  // };
 
   return (
     <h1
+      ref={titleRef}
       className={twMerge(
         "text-white text-4xl text-center mb-8 font-bold transition outline-none  hover:bg-black/20",
         titleClasses
       )}
       contentEditable={isEditing}
       onClick={turnOnEditing}
-      ref={titleRef}
-      // onBlur={() => {
-      //   setIsEditing(false);
-      // }}
       onBlur={onBlur}
+      suppressContentEditableWarning
     >
-      {title}
+      {data?.title ?? ""}
     </h1>
   );
-
-  // return isEditing ? (
-  //   <input
-  //     autoFocus
-  //     value={localTitle}
-  //     onChange={(e) => setLocalTitle(e.target.value)}
-  //     onBlur={handleBlur}
-  //     className="text-white text-4xl text-center mb-8 font-bold bg-transparent outline-none border-b border-gray-500"
-  //   />
-  // ) : (
-  //   <h1
-  //     className={twMerge(
-  //       "text-white text-4xl text-center mb-8 font-bold transition outline-none hover:bg-black/20",
-  //       titleClasses
-  //     )}
-  //     onClick={turnOnEditing}
-  //     ref={titleRef}
-  //   >
-  //     {localTitle}
-  //   </h1>
-  // );
 }

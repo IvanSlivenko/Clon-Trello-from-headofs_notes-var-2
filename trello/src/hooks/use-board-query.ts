@@ -3,7 +3,11 @@
 import { api } from "@/core/api";
 import { Prisma } from "@prisma/client";
 import { useBoardsQueryKey } from "./use-boards-query";
-import { useQueries, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  // useQueries,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 
 export type BoardPayload = Prisma.BoardsGetPayload<{
@@ -48,6 +52,19 @@ export const useBoardQuery = ({
       queryClient.setQueryData(["column", column.id], () => column);
     });
   }, [query.data]);
+
+  return query;
+};
+
+interface UseCashedBoardQueryOptions {
+  boardId: string;
+}
+export const useCachedBoardQuery = ({
+  boardId,
+}: UseCashedBoardQueryOptions) => {
+  const query = useQuery<BoardPayload>(["board", boardId], {
+    networkMode: "offlineFirst",
+  });
 
   return query;
 };
